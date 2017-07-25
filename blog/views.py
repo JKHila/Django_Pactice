@@ -3,6 +3,16 @@ from .models import Post
 from django.utils import timezone
 from .forms import PostForm
 
+from .w2v import *
+
+
+def var_test(request):
+    place = []
+    place.append(request.GET["name"])
+    if(request.GET["cate"]):
+        place.append(request.GET["cate"])
+    places = getWords(place)
+    return render(request, 'blog/var_test.html',{'places': places})
 
 def post_list(request):
     posts = Post.objects.order_by('-published_date')
