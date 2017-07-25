@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="page-header">
+        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+        <h1><a href="/">TITLE</a></h1>
+    </div>
    {% block content %}
    {% endblock %}
 </body>
