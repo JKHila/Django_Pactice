@@ -8,9 +8,11 @@ from .w2v import *
 
 def var_test(request):
     place = []
-    place.append(request.GET["name"])
-    if(request.GET["cate"]):
-        place.append(request.GET["cate"])
+    req = request.GET
+    if request.method == 'GET' and 'name' in req:
+        place.append(req["name"])
+        if 'cate' in req:
+            place.append(req["cate"])
     places = getWords(place)
     return render(request, 'blog/var_test.html',{'places': places})
 
