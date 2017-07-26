@@ -2,13 +2,24 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from django.utils import timezone
 from .forms import PostForm
+from django.http import JsonResponse
 
 from .w2v import *
 
+def var_json(request):
+    place = []
+    req = request.GET      
+    if request.method == 'GET' and 'name' in req:
+        place.append(req["name"])
+        if 'cate' in req:
+            place.append(req["cate"])
+    places = getWordsJson(place)
+    return JsonResponse(places, safe=False)
+    #return render(request, 'blog/var_json.html',{'places': places})
 
 def var_test(request):
     place = []
-    req = request.GET
+    req = request.GET      
     if request.method == 'GET' and 'name' in req:
         place.append(req["name"])
         if 'cate' in req:
