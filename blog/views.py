@@ -7,15 +7,19 @@ from django.http import JsonResponse
 from .w2v import *
 
 def var_json(request):
-    place = []
+    place = ""
+    ln = ""
+    cate = ""
     req = request.GET      
     if request.method == 'GET' and 'name' in req:
-        place.append(req["name"])
-        if 'cate' in req:
-            place.append(req["cate"])
-    places = getWordsJson(place)
+        place += (req["name"])
+    if request.method == 'GET' and 'ln' in req:
+        ln = req["ln"]
+    if request.method == 'GET' and 'cate' in req:
+        cate = req["cate"]
+        place += ",c"+req["cate"]
+    places = getWordsJson(place,ln,cate)
     return JsonResponse(places, safe=False)
-    #return render(request, 'blog/var_json.html',{'places': places})
 
 def var_test(request):
     place = []
