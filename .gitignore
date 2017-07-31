@@ -1,2 +1,4 @@
 /myvenv/
 /blog/dbConn.py
+*npy
+blog/tourplanb_place_saved_word2vec_model
